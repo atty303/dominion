@@ -20,17 +20,15 @@ class CardClass(object):
         self.name = name
         self._kind = kind
         self.cost = cost
+        self.ability = None
 
     @property
     def kind(self):
         return self._kind
 
-    def set_action(self, callback):
-        self._action = callback
-
-    def play(self):
+    def play_ability(self):
         """カードをプレイしたときの動作を実行する。"""
-        return self._action(self)
+        return self.ability(self)
 
     def __repr__(self):
         return "<CardClass '%s'>" % self.name

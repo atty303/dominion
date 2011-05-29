@@ -21,12 +21,12 @@ class CardClassTest(unittest.TestCase):
         card = models.CardClass('Cooper', models.CardType.Treasure, 0)
         self.assertEqual("<CardClass 'Cooper'>", repr(card))
 
-    def test_action(self):
+    def test_ability(self):
         cc = models.CardClass('Village', models.CardType.Action, 3)
-        def action(obj):
+        def ability(obj):
             yield True
-        cc.set_action(action)
-        generator = cc.play()
+        cc.ability = ability
+        generator = cc.play_ability()
         result = generator.next()
         self.assertEqual(True, result)
         self.assertRaises(StopIteration, lambda: generator.next())
