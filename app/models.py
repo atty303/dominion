@@ -93,6 +93,10 @@ class CardPile(object):
     def remove_card(self, card):
         self._list.remove(card)
 
+    def move_card(self, card, to_pile):
+        self.remove_card(card)
+        to_pile.add_top(card)
+
     def shuffle(self, random_generator=random.random):
         random.shuffle(self._list, random=random_generator)
 

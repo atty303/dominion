@@ -130,6 +130,14 @@ class CardPileTest(unittest.TestCase):
         self.assertEqual(2, pile.count())
         self.assertEqual([self.gold_card, self.cooper_card], list(pile))
 
+    def test_move_card(self):
+        from_pile = models.CardPile(cards=[self.cooper_card])
+        to_pile = models.CardPile()
+
+        from_pile.move_card(self.cooper_card, to_pile)
+
+        self.assertEqual([], list(from_pile))
+        self.assertEqual([self.cooper_card], list(to_pile))
 
     def test_card_pile_can_shuffle(self):
         pile = models.CardPile()
