@@ -63,7 +63,7 @@ class CardTest(unittest.TestCase):
 
 
 class CardPileFuncTest(unittest.TestCase):
-    def test(self):
+    def test_generate_cards(self):
         factory = models.create_basic_factory()
         cooper_class = factory['Cooper']
         cards = models.generate_cards(cooper_class, 2)
@@ -165,24 +165,19 @@ class PlayerTest(unittest.TestCase):
         self.silver_card = models.Card(factory['Silver'])
         self.gold_card = models.Card(factory['Gold'])
 
-    def test_player_has_name(self):
+    def test_has_name(self):
         player = models.Player(name='homura')
         self.assertEqual('homura', player.name)
 
-    def test_hands_empty(self):
+    def test_has_hands(self):
         player = models.Player('name')
         self.assertEqual(0, player.hands.count())
 
-    def test_hands(self):
-        player = models.Player('name')
-        player.hands.add_top(self.cooper_card)
-        self.assertEqual(1, player.hands.count())
-
-    def test_player_has_play_area(self):
+    def test_has_play_area(self):
         player = models.Player('name')
         self.assertEqual(0, player.play_area.count())
 
-    def test_deck_empty(self):
+    def test_has_deck(self):
         player = models.Player('name')
         self.assertEqual(0, player.deck.count())
 
