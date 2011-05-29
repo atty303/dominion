@@ -181,6 +181,10 @@ class PlayerTest(unittest.TestCase):
         player = models.Player('name')
         self.assertEqual(0, player.deck.count())
 
+    def test_has_discard_pile(self):
+        player = models.Player('name')
+        self.assertEqual(0, player.discard_pile.count())
+
     def test_draw_card(self):
         player = models.Player('name')
         player.deck.add_top([self.cooper_card, self.silver_card, self.gold_card])
