@@ -184,6 +184,13 @@ class PlayerTest(unittest.TestCase):
         self.assertEqual([self.cooper_card, self.silver_card, self.gold_card],
                          list(player.hands))
 
+    def test_player_has_action_resource(self):
+        player = models.Player('1')
+        self.assertEqual(0, player.actions)
+        player.actions = 1
+        self.assertEqual(1, player.actions)
+
+
 class SupplyTest(unittest.TestCase):
     def setUp(self):
         factory = models.create_basic_factory()
