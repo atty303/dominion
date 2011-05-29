@@ -9,12 +9,12 @@ class CardClassTest(unittest.TestCase):
     def test1(self):
         card = models.CardClass('Cooper', models.CardType.Treasure, 0)
         self.assertEqual('Cooper', card.name)
-        self.assertEqual(models.CardType.Treasure, card.kind)
+        self.assertEqual(models.CardType.Treasure, card.card_type)
         self.assertEqual(0, card.cost)
 
         card = models.CardClass('Province', models.CardType.Victory, 8)
         self.assertEqual('Province', card.name)
-        self.assertEqual(models.CardType.Victory, card.kind)
+        self.assertEqual(models.CardType.Victory, card.card_type)
         self.assertEqual(8, card.cost)
 
     def test_repr(self):
@@ -302,7 +302,7 @@ class CardClassTemplateTest(unittest.TestCase):
 
         cooper_class = Cooper.to_card_class()
         self.assertEqual('Cooper', cooper_class.name)
-        self.assertEqual(models.CardType.Treasure, cooper_class.kind)
+        self.assertEqual(models.CardType.Treasure, cooper_class.card_type)
         self.assertEqual(0, cooper_class.cost)
         generator = cooper_class.play_ability()
         self.assertEqual(True, generator.next())

@@ -16,15 +16,15 @@ class CardType(object):
 # インスタンスが1つのカード種類を表現する。
 # TODO: canPlay?
 class CardClass(object):
-    def __init__(self, name, kind, cost):
+    def __init__(self, name, card_type, cost):
         self.name = name
-        self._kind = kind
+        self._card_type = card_type
         self.cost = cost
         self.ability = None
 
     @property
-    def kind(self):
-        return self._kind
+    def card_type(self):
+        return self._card_type
 
     def play_ability(self):
         """カードをプレイしたときの動作を実行する。"""
