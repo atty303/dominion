@@ -7,22 +7,22 @@ import models
 
 class CardClassTest(unittest.TestCase):
     def test1(self):
-        card = models.CardClass('Cooper', models.Kind.Treasure, 0)
+        card = models.CardClass('Cooper', models.CardType.Treasure, 0)
         self.assertEqual('Cooper', card.name)
-        self.assertEqual(models.Kind.Treasure, card.kind)
+        self.assertEqual(models.CardType.Treasure, card.kind)
         self.assertEqual(0, card.cost)
 
-        card = models.CardClass('Province', models.Kind.Victory, 8)
+        card = models.CardClass('Province', models.CardType.Victory, 8)
         self.assertEqual('Province', card.name)
-        self.assertEqual(models.Kind.Victory, card.kind)
+        self.assertEqual(models.CardType.Victory, card.kind)
         self.assertEqual(8, card.cost)
 
     def test_repr(self):
-        card = models.CardClass('Cooper', models.Kind.Treasure, 0)
+        card = models.CardClass('Cooper', models.CardType.Treasure, 0)
         self.assertEqual("<CardClass 'Cooper'>", repr(card))
 
     def test_action(self):
-        cc = models.CardClass('Village', models.Kind.Action, 3)
+        cc = models.CardClass('Village', models.CardType.Action, 3)
         def action(obj):
             yield True
         cc.set_action(action)
@@ -38,7 +38,7 @@ class CardClassFactoryTest(unittest.TestCase):
         self.assertRaises(KeyError, lambda: factory['NotExists'])
 
     def test_1(self):
-        card = models.CardClass('Sample', models.Kind.Victory, 0)
+        card = models.CardClass('Sample', models.CardType.Victory, 0)
         factory = models.CardClassFactory()
         factory.add_card_class(card)
         self.assertEqual(card, factory['Sample'])

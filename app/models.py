@@ -4,7 +4,7 @@ import itertools
 import random
 
 
-class Kind(object):
+class CardType(object):
     Treasure = 'treasure'
     Victory = 'victory'
     Curse = 'curse'
@@ -158,12 +158,12 @@ class Game(object):
 def create_basic_factory():
     factory = CardClassFactory()
 
-    factory.add_card_class(CardClass('Cooper', Kind.Treasure, 0))
-    factory.add_card_class(CardClass('Silver', Kind.Treasure, 3))
-    factory.add_card_class(CardClass('Gold', Kind.Treasure, 6))
+    factory.add_card_class(CardClass('Cooper', CardType.Treasure, 0))
+    factory.add_card_class(CardClass('Silver', CardType.Treasure, 3))
+    factory.add_card_class(CardClass('Gold', CardType.Treasure, 6))
 
-    factory.add_card_class(CardClass('Estate', Kind.Victory, 2))
-    factory.add_card_class(CardClass('Duchy', Kind.Victory, 5))
-    factory.add_card_class(CardClass('Province', Kind.Victory, 8))
+    factory.add_card_class(CardClass('Estate', CardType.Victory, 2))
+    factory.add_card_class(CardClass('Duchy', CardType.Victory, 5))
+    factory.add_card_class(CardClass('Province', CardType.Victory, 8))
 
     return factory
