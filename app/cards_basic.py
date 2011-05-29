@@ -1,13 +1,6 @@
 from models import CardClass, Kind
 
 
-class CardClassTemplate(object):
-    @classmethod
-    def to_card_class(cls):
-        cc = CardClass(cls.__name__, cls.kind, cls.cost)
-        if hasattr(cls, 'action'):
-            cc.set_action(cls.action)
-        return cc
 
 
 class Villeage(CardClassTemplate):

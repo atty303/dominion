@@ -153,6 +153,15 @@ class Game(object):
         return self.current_player
 
 
+class CardClassTemplate(object):
+    @classmethod
+    def to_card_class(cls):
+        cc = CardClass(cls.__name__, cls.card_type, cls.cost)
+        if hasattr(cls, 'ability'):
+            cc.ability = cls.ability
+        return cc
+
+
 def create_basic_factory():
     factory = CardClassFactory()
 

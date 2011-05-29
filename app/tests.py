@@ -284,6 +284,24 @@ class GameTest(unittest.TestCase):
         self.assertEqual(player1, game.current_player)
 
 
+class CardClassTemplateTest(unittest.TestCase):
+    def test(self):
+        class Cooper(models.CardClassTemplate):
+            card_type = models.CardType.Treasure
+            cost = 0
+
+            @staticmethod
+            def ability(self):
+                yield True
+
+        cooper_class = Cooper.to_card_class()
+        self.assertEqual('Cooper', cooper_class.name)
+        self.assertEqual(models.CardType.Treasure, cooper_class.kind)
+        self.assertEqual(0, cooper_class.cost)
+        generator = cooper_class.play_ability()
+        self.assertEqual(True, generator.next())
+
+
 if __name__ == '__main__':
     unittest.main()
 
