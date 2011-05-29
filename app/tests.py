@@ -178,6 +178,10 @@ class PlayerTest(unittest.TestCase):
         player.hands.add_top(self.cooper_card)
         self.assertEqual(1, player.hands.count())
 
+    def test_player_has_play_area(self):
+        player = models.Player('name')
+        self.assertEqual(0, player.play_area.count())
+
     def test_deck_empty(self):
         player = models.Player('name')
         self.assertEqual(0, player.deck.count())

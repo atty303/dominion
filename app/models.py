@@ -126,6 +126,7 @@ class Player(object):
         self.name = name
         self.hands = CardPile()
         self.deck = CardPile()
+        self.play_area = CardPile()
         self.actions = 0
         self.buys = 0
 
