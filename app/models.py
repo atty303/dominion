@@ -144,6 +144,7 @@ class Game(object):
 
     def next_player(self):
         self.current_player = self.players_cycle.next()
+        return self.current_player
 
 
 def create_basic_factory():
