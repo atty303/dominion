@@ -176,6 +176,7 @@ class PlayerTest(unittest.TestCase):
         self.cooper_card = models.Card(factory['Cooper'])
         self.silver_card = models.Card(factory['Silver'])
         self.gold_card = models.Card(factory['Gold'])
+        self.another_card = models.Card(factory['Cooper'])
 
     def test_has_name(self):
         player = models.Player(name='homura')
@@ -200,6 +201,7 @@ class PlayerTest(unittest.TestCase):
     def test_draw_card(self):
         player = models.Player('name')
         player.deck.add_top([self.cooper_card, self.silver_card, self.gold_card])
+        player.discard_pile.add_top(self.another_card)
         self.assertEqual(0, player.hands.count())
 
         player.draw_card(1)
@@ -207,6 +209,7 @@ class PlayerTest(unittest.TestCase):
         self.assertEqual(2, player.deck.count())
         self.assertEqual(1, player.hands.count())
         self.assertEqual(self.gold_card, player.hands[0])
+        self.assertEqual([self.another_card], list(player.discard_pile))
 
         player.draw_card(2)
 
@@ -214,6 +217,16 @@ class PlayerTest(unittest.TestCase):
         self.assertEqual(3, player.hands.count())
         self.assertEqual([self.cooper_card, self.silver_card, self.gold_card],
                          list(player.hands))
+        self.assertEqual([self.another_card], list(player.discard_pile))
+
+        # デッキが切れた状態でドロー
+        player.draw_card(1)
+
+        self.assertEqual(0, player.deck.count())
+        self.assertEqual(4, player.hands.count())
+        self.assertEqual([self.another_card, self.cooper_card, self.silver_card, self.gold_card],
+                         list(player.hands))
+        self.assertEqual([], list(player.discard_pile))
 
     def test_player_has_action_resource(self):
         player = models.Player('1')

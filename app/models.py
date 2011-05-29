@@ -139,6 +139,11 @@ class Player(object):
 
     def draw_card(self, count):
         dealed_cards = self.deck.remove_top(count)
+        if len(dealed_cards) < count:
+            remain_count = count - len(dealed_cards)
+            self.discard_pile.move_all(self.deck)
+            self.deck.shuffle()
+            dealed_cards.extend(self.deck.remove_top(remain_count))
         self.hands.add_top(dealed_cards)
 
     def __repr__(self):
