@@ -211,6 +211,12 @@ class PlayerTest(unittest.TestCase):
         player.buys = 1
         self.assertEqual(1, player.buys)
 
+    def test_player_has_coin_resource(self):
+        player = models.Player('1')
+        self.assertEqual(0, player.coins)
+        player.coins = 1
+        self.assertEqual(1, player.coins)
+
 
 class SupplyTest(unittest.TestCase):
     def setUp(self):

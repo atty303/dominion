@@ -127,6 +127,7 @@ class Player(object):
         self.play_area = CardPile()
         self.actions = 0
         self.buys = 0
+        self.coins = 0
 
     def draw_card(self, count):
         dealed_cards = self.deck.remove_top(count)
