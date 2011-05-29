@@ -217,6 +217,10 @@ class PlayerTest(unittest.TestCase):
         player.coins = 1
         self.assertEqual(1, player.coins)
 
+    def test_repr(self):
+        player = models.Player(name='homura')
+        self.assertEqual("<Player 'homura'>", repr(player))
+
 
 class SupplyTest(unittest.TestCase):
     def setUp(self):

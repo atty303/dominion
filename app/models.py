@@ -135,6 +135,9 @@ class Player(object):
         dealed_cards = self.deck.remove_top(count)
         self.hands.add_top(dealed_cards)
 
+    def __repr__(self):
+        return "<Player '%s'>" % self.name
+
 
 class Game(object):
     def __init__(self, players, supply):
