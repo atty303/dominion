@@ -239,6 +239,19 @@ class GameTest(unittest.TestCase):
 
         self.assertEqual(None, game.current_player)
 
+    def test_next_player(self):
+        player1, player2 = models.Player('1'), models.Player('2')
+        game = models.Game(players=[player1, player2], supply=None)
+
+        next_player = game.next_player()
+        self.assertEqual(player1, game.current_player)
+
+        next_player = game.next_player()
+        self.assertEqual(player2, game.current_player)
+
+        next_player = game.next_player()
+        self.assertEqual(player1, game.current_player)
+
 
 if __name__ == '__main__':
     unittest.main()

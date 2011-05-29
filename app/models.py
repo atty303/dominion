@@ -1,5 +1,6 @@
 # -*- coding: utf-8; -*-
 
+import itertools
 import random
 
 
@@ -134,10 +135,13 @@ class Game(object):
         self.supply = supply
 
         self.current_player = None
+        self.players_cycle = itertools.cycle(self.players)
 
     def players_count(self):
         return len(self.players)
 
+    def next_player(self):
+        self.current_player = self.players_cycle.next()
 
 
 def create_basic_factory():
