@@ -90,6 +90,9 @@ class CardPile(object):
         del self._list[:count]
         return removed
 
+    def remove_card(self, card):
+        self._list.remove(card)
+
     def shuffle(self, random_generator=random.random):
         random.shuffle(self._list, random=random_generator)
 

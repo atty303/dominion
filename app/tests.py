@@ -123,6 +123,14 @@ class CardPileTest(unittest.TestCase):
         self.assertEqual(0, pile.count())
         self.assertEqual([self.silver_card, self.cooper_card], removed_card)
 
+    def test_remove_card(self):
+        pile = models.CardPile(cards=[self.cooper_card, self.silver_card, self.gold_card])
+
+        pile.remove_card(self.silver_card)
+        self.assertEqual(2, pile.count())
+        self.assertEqual([self.gold_card, self.cooper_card], list(pile))
+
+
     def test_card_pile_can_shuffle(self):
         pile = models.CardPile()
         pile.add_top(self.cooper_card)
