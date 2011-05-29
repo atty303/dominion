@@ -21,24 +21,26 @@ def dump_player(player):
 def main():
     factory = models.create_basic_factory()
 
-    player = models.Player('atty303')
+    players = [models.Player('atty303')]
+    for player in players:
+        player.deck.add_top(models.generate_cards(factory['Cooper'], 7))
+        player.deck.add_top(models.generate_cards(factory['Estate'], 3))
+        player.deck.shuffle()
+
+        player.draw_card(5)
+
+        dump_player(player)
 
     supply = models.Supply()
     supply.add_pile(models.CardPile(models.generate_cards(factory['Cooper'], 60)))
     supply.add_pile(models.CardPile(models.generate_cards(factory['Silver'], 40)))
     supply.add_pile(models.CardPile(models.generate_cards(factory['Gold'], 30)))
 
-    game = models.Game(players=[player], supply=supply)
+    game = models.Game(players=players, supply=supply)
 
     dump_supply(game.supply)
 
-    player.deck.add_top(models.generate_cards(factory['Cooper'], 7))
-    player.deck.add_top(models.generate_cards(factory['Estate'], 3))
-    player.deck.shuffle()
 
-    player.draw_card(5)
-
-    dump_player(player)
 
 if __name__ == '__main__':
     main()
