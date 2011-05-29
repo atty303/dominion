@@ -95,6 +95,11 @@ class CardPile(object):
         self.remove_card(card)
         to_pile.add_top(card)
 
+    def move_all(self, to_pile):
+        self._list.reverse()
+        to_pile.add_top(self._list)
+        del self._list[:]
+
     def shuffle(self, random_generator=random.random):
         random.shuffle(self._list, random=random_generator)
 
