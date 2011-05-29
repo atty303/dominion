@@ -226,12 +226,18 @@ class GameTest(unittest.TestCase):
         player1 = models.Player('1')
         game = models.Game(players=[player1], supply=None)
         self.assertEqual(1, game.players_count())
-        self.assertEqual(player1, game.current_player)
+        self.assertEqual([player1], game.players)
 
     def test_game_has_supply(self):
         empty_supply = models.Supply()
         game = models.Game(players=[models.Player('1')], supply=empty_supply)
         self.assertEqual(empty_supply, game.supply)
+
+    def test_initial_game_has_no_current_player(self):
+        player = models.Player('1')
+        game = models.Game(players=[player], supply=None)
+
+        self.assertEqual(None, game.current_player)
 
 
 if __name__ == '__main__':

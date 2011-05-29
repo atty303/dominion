@@ -133,7 +133,7 @@ class Game(object):
         self.players = players
         self.supply = supply
 
-        self.current_player = players[0]
+        self.current_player = None
 
     def players_count(self):
         return len(self.players)
