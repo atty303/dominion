@@ -166,9 +166,8 @@ class CardClassTemplate(object):
 def create_basic_factory():
     factory = CardClassFactory()
 
-    factory.add_card_class(CardClass('Cooper', CardType.Treasure, 0))
-    factory.add_card_class(CardClass('Silver', CardType.Treasure, 3))
-    factory.add_card_class(CardClass('Gold', CardType.Treasure, 6))
+    import cards_basic
+    cards_basic.setup_factory(factory)
 
     factory.add_card_class(CardClass('Estate', CardType.Victory, 2))
     factory.add_card_class(CardClass('Duchy', CardType.Victory, 5))
