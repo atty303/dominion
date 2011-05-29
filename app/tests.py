@@ -224,13 +224,11 @@ class SupplyTest(unittest.TestCase):
         self.cooper_class = factory['Cooper']
         self.silver_class = factory['Silver']
 
-    def test1(self):
+    def test_piles(self):
         supply = models.Supply()
         cooper_pile = models.CardPile(models.generate_cards(self.cooper_class, 60))
         supply.add_pile(cooper_pile)
 
-        self.assertTrue(self.cooper_class in supply)
-        self.assertTrue(self.silver_class not in supply)
         self.assertEqual({self.cooper_class: cooper_pile}, supply.piles)
 
     def test_add_duplicated_pile(self):
@@ -253,6 +251,18 @@ class SupplyTest(unittest.TestCase):
         def add_variant_pile_to_supply():
             supply.add_pile(variant_pile)
         self.assertRaises(ValueError, add_variant_pile_to_supply)
+
+    def test_card_classes(self):
+        supply = models.Supply()
+        cooper_pile = models.CardPile(models.generate_cards(self.cooper_class, 1))
+        supply.add_pile(cooper_pile)
+        silver_pile = models.CardPile(models.generate_cards(self.silver_class, 1))
+        supply.add_pile(silver_pile)
+
+        classes = supply.card_classes()
+        self.assertEqual(2, len(classes))
+        self.assertTrue(self.cooper_class in classes)
+        self.assertTrue(self.silver_class in classes)
 
 
 class GameTest(unittest.TestCase):

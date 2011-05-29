@@ -102,21 +102,23 @@ class CardPile(object):
 class Supply(object):
     def __init__(self):
         self.piles_dict = {}
+        self._card_classes = set()
 
     def add_pile(self, pile):
         if len(frozenset([c.card_class for c in pile])) > 1:
             raise ValueError("Couldn't add variant pile; %r" % pile)
         card_class = pile[0].card_class
-        if card_class in self.piles_dict.keys():
+        if card_class in self._card_classes:
             raise KeyError("Couldn't add duplicated card class %r" % card_class)
         self.piles_dict[card_class] = pile
-
-    def __contains__(self, card_class):
-        return card_class in self.piles_dict.keys()
+        self._card_classes.add(card_class)
 
     @property
     def piles(self):
         return self.piles_dict
+
+    def card_classes(self):
+        return self._card_classes
 
 
 class Player(object):
