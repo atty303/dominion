@@ -123,6 +123,9 @@ class CardPileTest(unittest.TestCase):
         self.assertEqual(0, pile.count())
         self.assertEqual([self.silver_card, self.cooper_card], removed_card)
 
+        removed_card = pile.remove_top(2)
+        self.assertEqual([], removed_card)
+
     def test_remove_card(self):
         pile = models.CardPile(cards=[self.cooper_card, self.silver_card, self.gold_card])
 
